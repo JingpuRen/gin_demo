@@ -33,6 +33,8 @@ func main() {
 		// todo 通过c.PostForm()方法获取表单中的数据
 		name := c.PostForm("name")
 		password := c.PostForm("password")
+		// todo 可以通过ok来看成功获取参数对应的值
+		password,ok := c.PostForm("password")
 		c.JSON(http.StatusOK, gin.H{
 			"name": name, "password": password,
 		})
