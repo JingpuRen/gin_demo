@@ -32,7 +32,20 @@ func main() {
 		})
 	})
 
-	// tip 4:路由组，类似于Java中最前面的那个注释，同一个组的有共同的请求前缀
+	// tip 4:路由组，当具有公共前缀的时候，我们一般会使用路由组
+	userGroup := router.Group("/user")
+	{
+		userGroup.GET("/index", func(context *gin.Context) {
+			context.JSON(http.StatusOK, gin.H{
+				"data": "this is get",
+			})
+		})
+		userGroup.GET("/login", func(context *gin.Context) {
+			context.JSON(http.StatusOK, gin.H{
+				"data": "this is get2",
+			})
+		})
 
+	}
 	router.Run("localhost:8080")
 }
